@@ -6,8 +6,9 @@ heads=1
 tails=0
 headTally=0
 tailTally=0
+limit=21
 
-for ((i=0; i<10; i++))
+while [[ $headTally -lt $limit && $tailTally -lt $limit ]]
 do
 	flipCoin=$((RANDOM%2))
 	if [[ $flipCoin -eq $heads ]]
@@ -18,6 +19,15 @@ do
 	fi
 done
 
-echo "number of times heads won : "$headTally
-echo "number of times tails won : "$tailTally
+if [[ $headTally -eq $tailTally ]]
+then
+	echo "Its a tie!"
+elif [[ $headTally -gt $tailTally ]]
+then
+	diff=$(($headTally-$tailTally))
+	echo "heads won by "$diff
+else
+	diff=$(($tailTally-$headTally))
+	echo "tails won by "$diff
+fi
 
