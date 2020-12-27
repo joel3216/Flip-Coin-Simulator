@@ -17,12 +17,15 @@ do
 	else
 		tailTally=$(($tailTally+1))
 	fi
+
+	if [[ $headTally -eq $tailTally ]]
+	then
+		limit=$(($limit+2))
+	fi
+
 done
 
-if [[ $headTally -eq $tailTally ]]
-then
-	echo "Its a tie!"
-elif [[ $headTally -gt $tailTally ]]
+if [[ $headTally -gt $tailTally ]]
 then
 	diff=$(($headTally-$tailTally))
 	echo "heads won by "$diff
